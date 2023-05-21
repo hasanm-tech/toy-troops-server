@@ -77,7 +77,7 @@ async function run() {
         const query = {_id : new ObjectId(id)}
         const options = {
             projection : {
-                photo:1, sellerName:1, price:1, subCategory:1,rating:1, quantity:1, detail:1
+                photo:1,toyName:1, sellerName:1, price:1, subCategory:1,rating:1, quantity:1, detail:1
             }
         }
         const result = await bookingCollection.findOne(query,options)
@@ -85,7 +85,24 @@ async function run() {
     })
 
 
+    app.get('/myToys', async (req, res) => {
+        let query = {};
+       if(req.query.sellerEmail){
+        query = {sellerEmail : req.query.sellerEmail}
+       }
+        const result = await bookingCollection.find(query).toArray();
+        res.send(result);
+      });
 
+      
+      
+
+      app.delete('/bookings/:id', async (req,res) => {
+        const id = req.params.id;
+        const query = {_id : new ObjectId(id)}
+        const result = await bookingCollection.deleteOne(query);
+        res.send(result)
+      })
 
 
 
