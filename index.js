@@ -149,9 +149,9 @@ run().catch(console.dir);
 
 
 app.get('/',(req,res) => {
-    res.send('toy troops is running')
+    res.send('toy-troops is running')
 })
 
 app.listen(port, () => {
-    console.log(`toy is running at ${port}`)
+    console.log(`toy troops is running at ${port}`)
 })
