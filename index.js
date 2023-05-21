@@ -95,6 +95,25 @@ async function run() {
       });
 
       
+
+      app.put('/bookings/:id', async (req,res) => {
+        const id = req.params.id;
+        const filter = {_id : new ObjectId(id)}
+        const options = {upsert :true}
+        const updatedToy = req.body;
+        const toy = {
+            $set : {
+                toyName : updatedToy.toyName,
+                price : updatedToy.price,
+                quantity : updatedToy.quantity,
+                detail : updatedToy.detail,
+                
+            }
+        }
+
+        const result = await bookingCollection.updateOne(filter,toy,options);
+        res.send(result)
+      })
       
 
       app.delete('/bookings/:id', async (req,res) => {
