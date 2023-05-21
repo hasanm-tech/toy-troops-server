@@ -38,6 +38,9 @@ async function run() {
     const bookingCollection = client.db('toy-troops').collection('bookings')
 
 
+
+    //  all toy 
+
     app.get('/toys', async (req,res) => {
         const result = await toyCollections.find().toArray() 
         res.send(result)
@@ -57,7 +60,7 @@ async function run() {
     })
 
 
-    // bookings 
+    // bookings form client 
 
     app.post('/bookings', async (req,res) => {
         const booking = req.body;
